@@ -60,6 +60,24 @@
         app:layout_constraintTop_toBottomOf="@+id/duracaoEt"
         tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/notaEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Nota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assistidoEt" />
+
+    <Spinner
+        android:id="@+id/generoEt"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notaEt" />
+
     <Button
         android:id="@+id/saveBt"
         android:layout_width="0dp"
@@ -67,7 +85,9 @@
         android:text="Salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/observacaoEt" />
+        app:layout_constraintTop_toBottomOf="@+id/generoEt" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
