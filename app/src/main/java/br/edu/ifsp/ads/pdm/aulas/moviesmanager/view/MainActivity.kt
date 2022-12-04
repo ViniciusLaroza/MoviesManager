@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.adapter.FilmeAdapter
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.EXTRA_FILME
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.VIEW_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Filme
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     // Adapter
     private lateinit var filmeAdapter: FilmeAdapter
 
-    //private lateinit var parl: ActivityResultLauncher<Intent>
+    private lateinit var parl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,36 @@ class MainActivity : AppCompatActivity() {
 
         filmeAdapter.notifyDataSetChanged()
 
+        parl = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val pessoa = result.data?.getParcelableExtra<Filme>(EXTRA_FILME)
 
+                pessoa?.let { _filme->
+                    val position = filmeList.indexOfFirst { it.id == _filme.id }
+                    if (position != -1) {
+                        // Alterar na posição
+                        filmeList[position] = _filme
+                    }
+                    else {
+                        filmeList.add(_filme)
+                    }
+                    filmeAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+        registerForContextMenu(amb.filmeLv)
+
+        amb.filmeLv.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                val pessoa = filmeList[position]
+                val pessoaIntent = Intent(this@MainActivity, FilmeActivity::class.java)
+                pessoaIntent.putExtra(EXTRA_FILME, pessoa)
+                pessoaIntent.putExtra(VIEW_FILME, true)
+                startActivity(pessoaIntent)
+            }
     }
 
     private fun fillFilmeList() {

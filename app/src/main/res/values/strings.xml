@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MoviesManager</string>
+
+    <string-array name="genero">
+        <item>Drama</item>
+        <item>Ação</item>
+        <item>Desenho</item>
+        <item>Comedia</item>
+        <item>Terror</item>
+    </string-array>
 </resources>
