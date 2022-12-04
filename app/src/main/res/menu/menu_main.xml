@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/orderAlfabeticaMi"
+        android:icon="@drawable/ic_order_string"
+        android:title="@string/ordena_o_a_z"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/orderNumberMi"
+        android:icon="@drawable/ic_order_number"
+        android:title="@string/ordena_o_pela_nota"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/addFilmeMi"
+        android:icon="@drawable/ic_add"
+        android:title="@string/adicionar_filme"
+        app:showAsAction="ifRoom" />
+
+</menu>

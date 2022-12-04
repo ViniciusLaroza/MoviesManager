@@ -36,8 +36,8 @@ class FilmeAdapter (
         }
 
         with(filmeTileView?.tag as TileContactHolder) {
-            nomeTv.text = "Nome: " + filme.nome
-            notaTv.text = "Nota/Score: " + filme.nota
+            nomeTv.text = filme.nome
+            notaTv.text = filme.nota
 
         }
 

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">MoviesManager</string>
+    <string name="ordena_o_pela_nota">Ordenação pela Nota</string>
+    <string name="ordena_o_a_z"><![CDATA[Ordenação A>Z]]></string>
+    <string name="adicionar_filme">Adicionar filme</string>
 
     <string-array name="genero">
         <item>Drama</item>

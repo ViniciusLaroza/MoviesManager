@@ -8,6 +8,7 @@ import br.edu.ifsp.ads.pdm.aulas.moviesmanager.databinding.ActivityFilmeBinding
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.EXTRA_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.VIEW_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Filme
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Genero
 import kotlin.random.Random
 
 class FilmeActivity : AppCompatActivity(){
@@ -18,17 +19,21 @@ class FilmeActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(afb.root)
 
-        val recebPessoa = intent.getParcelableExtra<Filme>(EXTRA_FILME)
-        recebPessoa?.let{ _recebFilme ->
+        val recebFilme = intent.getParcelableExtra<Filme>(EXTRA_FILME)
+        recebFilme?.let{ _recebFilme ->
             with(afb) {
                 with(_recebFilme) {
-                    nomeEt.setText(nome)
+                    nomeEt.isEnabled = false
                     anoLancamentoEt.setText(anoLancamento)
                     produtoraEt.setText(produtora)
                     duracaoEt.setText(duracao)
-                    flagAssistidoSt.setText(flagAssistido)
+                    if(flagAssistido == "checked") flagAssistidoSt.toggle()
                     notaEt.setText(nota)
-                    generoSp.selectedItem.toString()
+                    for (i in 0 until Genero.values().size){
+                        if(genero == Genero.values()[i].toString()) {
+                            generoSp.setSelection(i)
+                        }
+                    }
                 }
             }
         }
@@ -45,18 +50,21 @@ class FilmeActivity : AppCompatActivity(){
         }
 
         afb.saveBt.setOnClickListener {
-            val person = Filme(
-                id = recebPessoa?.id?: Random(System.currentTimeMillis()).nextInt(),
+
+            val flagValor : String = if(afb.flagAssistidoSt.isChecked) "Assistido" else "Nao Assistido"
+
+            val filme = Filme(
+                id = recebFilme?.id?: Random(System.currentTimeMillis()).nextInt(),
                 nome = afb.nomeEt.text.toString(),
                 anoLancamento = afb.anoLancamentoEt.text.toString(),
                 produtora = afb.produtoraEt.text.toString(),
                 duracao = afb.duracaoEt.text.toString(),
-                flagAssistido = afb.flagAssistidoSt.text.toString(),
+                flagAssistido = flagValor,
                 nota = afb.notaEt.text.toString(),
                 genero = afb.generoSp.selectedItem.toString()
             )
             val resultIntent = Intent()
-            resultIntent.putExtra(EXTRA_FILME, person)
+            resultIntent.putExtra(EXTRA_FILME, filme)
             setResult(RESULT_OK, resultIntent)
             finish()
 
