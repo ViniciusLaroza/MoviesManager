@@ -10,13 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nome"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/notaTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nota"
-        android:textSize="25sp" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Nota" />
+
+    <TextView
+        android:id="@+id/produtoraTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Produtora" />
+
+    <TextView
+        android:id="@+id/duracaoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duração" />
 
 </LinearLayout>

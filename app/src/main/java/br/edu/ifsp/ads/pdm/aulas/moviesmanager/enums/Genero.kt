@@ -1,4 +1,4 @@
-package br.edu.ifsp.ads.pdm.aulas.moviesmanager.model
+package br.edu.ifsp.ads.pdm.aulas.moviesmanager.enums
 
 enum class Genero {
     Drama,

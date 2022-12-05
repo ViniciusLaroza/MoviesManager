@@ -14,7 +14,7 @@ class FilmeAdapter (
     context: Context,
     private val filmeList: MutableList<Filme>
 ): ArrayAdapter<Filme>(context, R.layout.tile_filme, filmeList) {
-    private data class TileContactHolder(val nomeTv: TextView, val notaTv: TextView)
+    private data class TileContactHolder(val nomeTv: TextView, val notaTv: TextView, val produtoraTv: TextView, val duracaoTv: TextView)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val filme = filmeList[position]
@@ -31,14 +31,17 @@ class FilmeAdapter (
             val tileContactHolder = TileContactHolder(
                 filmeTileView.findViewById(R.id.nomeTv),
                 filmeTileView.findViewById(R.id.notaTv),
+                filmeTileView.findViewById(R.id.produtoraTv),
+                filmeTileView.findViewById(R.id.duracaoTv),
             )
             filmeTileView.tag = tileContactHolder
         }
 
         with(filmeTileView?.tag as TileContactHolder) {
-            nomeTv.text = filme.nome
-            notaTv.text = filme.nota
-
+            nomeTv.text = "Filme:  ${filme.nome}"
+            notaTv.text = "Nota: ${filme.nota}"
+            produtoraTv.text = "Produta: ${filme.produtora}"
+            duracaoTv.text = "Duração: ${filme.duracao}"
         }
 
         return filmeTileView

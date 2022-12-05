@@ -1,4 +1,4 @@
-package br.edu.ifsp.ads.pdm.aulas.moviesmanager.model
+package br.edu.ifsp.ads.pdm.aulas.moviesmanager.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.R
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.dao.FilmeDao
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Filme
 import java.sql.SQLException
 
 class FilmeDaoSqlite (context: Context) : FilmeDao {

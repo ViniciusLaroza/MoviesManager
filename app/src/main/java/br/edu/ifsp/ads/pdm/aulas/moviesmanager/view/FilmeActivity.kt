@@ -9,8 +9,7 @@ import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.EXTRA_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.INVALID_FILME_ID
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.VIEW_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Filme
-import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Genero
-import kotlin.random.Random
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.enums.Genero
 
 class FilmeActivity : AppCompatActivity(){
     private val afb: ActivityFilmeBinding by lazy {

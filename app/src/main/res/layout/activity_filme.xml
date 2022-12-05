@@ -8,6 +8,19 @@
     tools:context=".view.FilmeActivity"
     tools:ignore="UseSwitchCompatOrMaterialXml">
 
+    <TextView
+        android:id="@+id/Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Filme"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/nomeEt"
         android:layout_width="0dp"
@@ -17,7 +30,7 @@
         android:hint="Nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Info"/>
 
     <EditText
         android:id="@+id/anoLancamentoEt"
@@ -90,7 +103,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generoSp" />
-
 
 
 
