@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.databinding.ActivityFilmeBinding
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.EXTRA_FILME
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.INVALID_FILME_ID
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Constant.VIEW_FILME
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Filme
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.model.Genero
@@ -24,10 +25,11 @@ class FilmeActivity : AppCompatActivity(){
             with(afb) {
                 with(_recebFilme) {
                     nomeEt.isEnabled = false
+                    nomeEt.setText(nome)
                     anoLancamentoEt.setText(anoLancamento)
                     produtoraEt.setText(produtora)
                     duracaoEt.setText(duracao)
-                    if(flagAssistido == "checked") flagAssistidoSt.toggle()
+                    if(flagAssistido == "Assistido") flagAssistidoSt.toggle()
                     notaEt.setText(nota)
                     for (i in 0 until Genero.values().size){
                         if(genero == Genero.values()[i].toString()) {
@@ -54,7 +56,7 @@ class FilmeActivity : AppCompatActivity(){
             val flagValor : String = if(afb.flagAssistidoSt.isChecked) "Assistido" else "Nao Assistido"
 
             val filme = Filme(
-                id = recebFilme?.id?: Random(System.currentTimeMillis()).nextInt(),
+                id = recebFilme?.id?: INVALID_FILME_ID,
                 nome = afb.nomeEt.text.toString(),
                 anoLancamento = afb.anoLancamentoEt.text.toString(),
                 produtora = afb.produtoraEt.text.toString(),

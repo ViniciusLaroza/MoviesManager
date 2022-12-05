@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import br.edu.ifsp.ads.pdm.aulas.moviesmanager.Controller.FilmeController
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.R
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.adapter.FilmeAdapter
 import br.edu.ifsp.ads.pdm.aulas.moviesmanager.databinding.ActivityMainBinding
@@ -24,11 +25,15 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    // Data source
-    private val filmeList: MutableList<Filme> = mutableListOf()
+    private val filmeList: MutableList<Filme> by lazy{
+        filmeController.getFilmes()
+    }
 
-    // Adapter
     private lateinit var filmeAdapter: FilmeAdapter
+
+    private val filmeController : FilmeController by lazy {
+        FilmeController(this)
+    }
 
     private lateinit var parl: ActivityResultLauncher<Intent>
 
@@ -64,10 +69,13 @@ class MainActivity : AppCompatActivity() {
                     if (position != -1) {
                         // Alterar na posição
                         filmeList[position] = _filme
+                        filmeController.editFilme(_filme)
                     }
                     else {
+                        _filme.id = filmeController.insertFilme(_filme)
                         filmeList.add(_filme)
                     }
+                    filmeList.sortBy { it.nome }
                     filmeAdapter.notifyDataSetChanged()
                 }
             }
@@ -128,6 +136,7 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.removeFilmeMi -> {
                 // Remove o filme
+                filmeController.removeFilme(filmeList[position].id)
                 filmeList.removeAt(position)
                 filmeAdapter.notifyDataSetChanged()
                 true
